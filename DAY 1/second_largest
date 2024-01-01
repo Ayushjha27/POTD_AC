@@ -1,0 +1,37 @@
+
+class Solution
+{
+public:
+    // Function returns the second
+    // largest elements
+    // GFG -> https://practice.geeksforgeeks.org/problems/second-largest3735/1
+
+    int print2largest(int arr[], int n)
+    {
+
+        int max = INT_MIN, smax = INT_MIN;
+        // to find largest element initialize variables with smallest/minimum value available.
+        int ans;
+
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] > max) // comparing max with each array element
+            {
+                smax = max;   // smax is now containing old value of max i.e previous max
+                max = arr[i]; // max is now containing new value i.e new max
+            }
+
+            else if (arr[i] > smax && arr[i] != max) // comparing smax with each array element and max != array element
+                smax = arr[i];
+            //
+        }
+
+        ans = (smax == INT_MIN) ? -1 : smax;
+        return ans;
+    }
+    /*
+    The time complexity of the given code is O(n) because it iterates through the array once to find the second largest element.
+
+    The space complexity is O(1) because the code only uses a constant amount of extra space to store the maximum and second maximum elements.
+   */
+};
