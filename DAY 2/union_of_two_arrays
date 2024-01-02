@@ -1,0 +1,72 @@
+
+//User function template in C++
+
+// GFG -> https://www.geeksforgeeks.org/problems/union-of-two-arrays3538/1
+
+class Solution{
+    public:
+    //Function to return the count of number of elements in union of two arrays.
+    
+    int doUnion(int a[], int n, int b[], int m)  {
+        
+        // approach 1     ->   using unordered_set
+        
+        //  arr1 -> 5,1,7   ;  arr2 -> 5,1,9
+        
+        /* set( by default ordered data) => 1,5,7,9 
+         The time complexity of the given code is O(n log n) because the insertion operation in a set takes O(log n) time, and we are inserting n elements from array a[] and m elements from array b[]. Therefore, the overall time complexity is O(n log n + m log m).
+         The space complexity of the given code is O(n + m) because we are using a set to store the union of the two arrays. The set will contain at most n + m distinct elements, so the space complexity is O(n + m).
+       */  
+        
+        // unordered_set => 5,1,7,9   
+        
+        /*
+        The time complexity of this approach is O(n + m), where n is the size of array a and m is the size of array b. This is because we iterate through both arrays once to insert their elements into the unordered_set, which has an average insertion time complexity of O(1). Therefore, the overall time complexity is O(n + m).
+        The space complexity of this approach is also O(n + m) because we are using an unordered_set to store the union of the two arrays. The unordered_set will contain at most n + m distinct elements, so the space complexity is O(n + m).
+        */
+        
+       
+       /* unordered_set <int> s;
+        
+        for(int i=0;i<n;i++)
+        s.insert(a[i]);
+        
+        for(int i=0;i<m;i++)
+        s.insert(b[i]);
+        
+        return s.size();  */
+        
+        
+        // approach 2 ->  using arrays
+        
+        int c[100000];
+        int j=0;
+        
+        for(int i=0;i<n;i++)
+        c[i] = a[i];   // copying array1 elements to c array
+        
+        for(int i=n;i<m+n;i++)
+        c[i] = b[j++];  // // copying array2 elements to c array
+        
+        sort(c , c+n+m);   // sorting elements in c array
+       
+        
+        int count=1;
+        for(int i=1;i<m+n;i++)
+        {
+            if(c[i] != c[i-1])
+            count++;
+        }
+        return count;
+        
+        // ex- 1,1,2,2,3,4     => count = 4 
+        /*
+        The time complexity of this code is O((n+m)log(n+m)), where n is the size of array1 and m is the size of array2. This is because the code first copies the elements from array1 and array2 into the c array, which takes O(n+m) time. Then, it sorts the elements in the c array using the sort() function, which has a time complexity of O((n+m)log(n+m)). Finally, it iterates through the sorted c array to count the number of unique elements, which takes O(n+m) time.
+        The space complexity of this code is O(n+m) because it creates a new array, c, of size n+m to store the elements from array1 and array2.
+       */
+    }
+};
+
+
+
+
