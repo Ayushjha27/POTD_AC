@@ -1,0 +1,25 @@
+
+// leetcode -> https://leetcode.com/problems/number-of-good-pairs/
+
+class Solution
+{
+public:
+    int numIdenticalPairs(vector<int> &nums)
+    {
+        int count = 0, size = nums.size();
+
+        for (int i = 0; i < size - 1; i++) // iterate from i = 0 to size-1
+        {
+            for (int j = i + 1; j < size; j++) // iterate from j = i+1 to size
+            {
+                if (nums[i] == nums[j])
+                    count++;
+            }
+        }
+        return count;
+    }
+
+    // The time complexity of this code is O(n^2).
+
+    // The space complexity of this code is O(1).
+};
