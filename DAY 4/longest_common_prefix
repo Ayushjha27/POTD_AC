@@ -1,0 +1,40 @@
+// Leetcode => https://leetcode.com/problems/longest-common-prefix/
+
+class Solution
+{
+public:
+    string longestCommonPrefix(vector<string> &strs)
+    {
+        string ans = "";
+        // for traversing all characters of first string
+        for (int i = 0; i < strs[0].size(); i++)
+        {
+            char ch = strs[0][i];
+            bool match = true;
+            // for comparing ch with rest of the strings
+            for (int j = 1; j < strs.size(); j++)
+            {
+                // not match
+                if (ch != strs[j][i])
+                {
+                    match = false;
+                    break;
+                }
+            }
+            if (match == false)
+                break;
+            else
+                ans.push_back(ch);
+        }
+        return ans;
+    }
+    /*
+    The time complexity of this solution is O(n*m), where n is the number of
+strings in the input vector and m is the length of the first string. This is
+because we iterate through each character of the first string, and for each
+character, we compare it with the corresponding character in the rest of the
+strings.
+
+The space complexity is O(1) because we only use a constant amount of extra
+space to store the answer string.*/
+};
