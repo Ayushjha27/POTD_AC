@@ -1,0 +1,19 @@
+// leetcode -https://leetcode.com/problems/rotate-string/description/
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        // if (s.size() != goal.size())
+        //     return false;
+        // string check = s + s;
+        // return check.find(goal) != string::npos;
+        return (s.length() == goal.length()) &&
+               ((s + s).find(goal) != string::npos);
+    }
+    // find() function returns index of the first occurrence of the sub-string ,
+    // if substring is not found it return string::npos ( this constant is
+    // defined with a value of -1)
+    /*
+TC => o(n*m) where n is size of string and m is size of substring
+
+    */
+};
