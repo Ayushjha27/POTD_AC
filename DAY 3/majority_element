@@ -1,0 +1,61 @@
+// Leetcode => https://leetcode.com/problems/majority-element/
+
+class Solution
+{
+public:
+    //  Brute force
+    /*
+     int majorityElement(vector<int>& nums) {
+         sort(nums.begin(),nums.end());
+         return nums[nums.size()/2];
+     }
+ */
+    // The time complexity of this code is O(n log n) because the sort function
+    // used has a time complexity of O(n log n). The space complexity is O(1)
+    // because no additional space is used, except for the input vector.
+
+    /*
+        int majorityElement(vector<int>& nums) {
+            int n = nums.size();
+
+            // declaring a map:
+            map<int, int> mpp;
+
+            // storing the elements with its occurnce:
+            for (int i = 0; i < n; i++) {
+                mpp[nums[i]]++;
+            }
+
+            // searching for the majority element:
+            for (auto it : mpp) {
+                if (it.second > (n / 2)) {
+                    return it.first;
+                }
+            }
+            return -1;
+        }
+        // TC => O(N*logN) + O(N)  ; SC =>   O(N) as we are using a map data
+       structure
+    */
+
+    // Optimal Approach: Moore’s Voting Algorithm
+    int majorityElement(vector<int> &nums)
+    {
+        int c = 0;
+        int ele;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (c == 0)
+            {
+                c = 1;
+                ele = nums[i];
+            }
+            else if (ele == nums[i])
+                c++;
+            else
+                c--;
+        }
+        return ele;
+    }
+    // TC => O(n)  ; SC => O(1)
+};
